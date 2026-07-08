@@ -350,9 +350,9 @@ p {
 
 .encourage-character img {
   display: block;
-  width: 86px;
+  width: auto;
   max-width: none;
-  height: auto;
+  height: 100%;
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 8px 10px rgba(18, 63, 125, 0.18));
@@ -595,7 +595,7 @@ p {
   }
 
   .encourage-character img {
-    width: 76px;
+    height: 100%;
   }
 
   .category-card a {
@@ -754,7 +754,7 @@ p {
   }
 
   body[data-page="home"] .encourage-character img {
-    width: 82px;
+    height: 100%;
   }
 
   body[data-page="home"] .site-footer {
