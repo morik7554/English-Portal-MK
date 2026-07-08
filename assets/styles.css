@@ -215,6 +215,10 @@ p {
   gap: 16px;
 }
 
+.section {
+  position: relative;
+}
+
 .category-card,
 .grade-card {
   min-width: 0;
@@ -293,6 +297,65 @@ p {
   color: #6a4b00;
   background: #fff3c4;
   font-size: 0.78rem;
+}
+
+.encourage-widget {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 82px;
+  gap: 12px;
+  align-items: end;
+  min-width: 0;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(139, 184, 255, 0.75);
+  box-shadow: 0 12px 28px rgba(18, 63, 125, 0.12);
+}
+
+.encourage-bubble {
+  position: relative;
+  min-height: 74px;
+  padding: 14px 15px;
+  border-radius: 8px;
+  color: var(--blue-dark);
+  background: #ffffff;
+  border: 2px solid #a9caff;
+  font-size: 0.96rem;
+  font-weight: 850;
+  line-height: 1.55;
+}
+
+.encourage-bubble::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: 18px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border-top: 2px solid #a9caff;
+  border-right: 2px solid #a9caff;
+  transform: rotate(45deg);
+}
+
+.encourage-character {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  width: 82px;
+  height: 96px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.encourage-character img {
+  display: block;
+  width: 86px;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 8px 10px rgba(18, 63, 125, 0.18));
 }
 
 .accent-yellow .card-icon,
@@ -475,6 +538,10 @@ p {
   .grade-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .encourage-widget {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 680px) {
@@ -511,6 +578,24 @@ p {
   .category-grid,
   .grade-grid {
     grid-template-columns: 1fr;
+  }
+
+  .encourage-widget {
+    grid-template-columns: minmax(0, 1fr) 72px;
+  }
+
+  .encourage-bubble {
+    min-height: 0;
+    font-size: 0.92rem;
+  }
+
+  .encourage-character {
+    width: 72px;
+    height: 84px;
+  }
+
+  .encourage-character img {
+    width: 76px;
   }
 
   .category-card a {
@@ -649,6 +734,27 @@ p {
     height: 30px;
     padding: 0 8px;
     font-size: 1rem;
+  }
+
+  body[data-page="home"] .encourage-widget {
+    min-height: clamp(90px, 12vh, 106px);
+    padding: 12px;
+  }
+
+  body[data-page="home"] .encourage-bubble {
+    min-height: 76px;
+    padding: 12px 14px;
+    font-size: clamp(0.86rem, 1vw, 0.98rem);
+    line-height: 1.45;
+  }
+
+  body[data-page="home"] .encourage-character {
+    width: 78px;
+    height: 88px;
+  }
+
+  body[data-page="home"] .encourage-character img {
+    width: 82px;
   }
 
   body[data-page="home"] .site-footer {
