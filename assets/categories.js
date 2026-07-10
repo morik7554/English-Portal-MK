@@ -108,7 +108,11 @@ const portalCategories = [
     materials: {
       all: [
         {
-          name: "スライド式英文法プリント",
+          name: "デジタルプリント（Grammar Slide）",
+          url: "https://grammar-slide.vercel.app/"
+        },
+        {
+          name: "4スライドプリント",
           url: "https://english-grammar-4-slides-prints.vercel.app/index.html"
         }
       ]
@@ -121,7 +125,15 @@ const portalCategories = [
     icon: "☀️",
     accent: "sky",
     href: "categories/summer.html",
-    description: "長期休みを活用して、復習や発展学習に取り組みます。"
+    description: "長期休みを活用して、復習や発展学習に取り組みます。",
+    materials: {
+      all: [
+        {
+          name: "夏休みの宿題",
+          url: "https://summer-english-quest.vercel.app/"
+        }
+      ]
+    }
   }
 ];
 
