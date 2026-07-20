@@ -147,9 +147,10 @@ const homeButtons = [
   },
   {
     title: "文法トレーニング",
+    displayTitle: "文法トレーニング<br>English-Knock",
     icon: "文",
     accent: "green",
-    url: "https://grammar-slide.vercel.app/",
+    url: "https://new-english-100knocks.vercel.app",
     status: "open"
   },
   {

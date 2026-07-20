@@ -65,7 +65,7 @@
       <a href="${href}"${target} aria-label="${category.title}を開く" class="${isReady ? "" : "is-disabled"}">
         <span class="card-icon">${category.icon}</span>
         <span class="card-body">
-          <strong>${category.title}</strong>
+          <strong>${category.displayTitle || category.title}</strong>
         </span>
         <span class="card-arrow" aria-hidden="true">${actionText}</span>
       </a>
