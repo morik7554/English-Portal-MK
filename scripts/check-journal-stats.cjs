@@ -1,0 +1,27 @@
+const assert=require('node:assert/strict');
+const stats=require('../assets/journal-stats.js');
+let count=0;function test(name,fn){fn();console.log('PASS '+name);count++;}
+const row=(date,minutes,materialId='words')=>({date,durationMinutes:minutes,materialId,materialName:materialId});
+test('今週は月曜日から今日まで',()=>{assert.deepEqual(stats.range('week','2026-11-17'),{from:'2026-11-16',to:'2026-11-17'});assert.equal(stats.range('week','2026-11-16').from,'2026-11-16');});
+test('年をまたぐ週を扱う',()=>assert.equal(stats.range('week','2026-01-01').from,'2025-12-29'));
+test('今月は1日から今日まで',()=>assert.deepEqual(stats.range('month','2026-11-17'),{from:'2026-11-01',to:'2026-11-17'}));
+test('半年は今日を含む直近6か月',()=>assert.deepEqual(stats.range('half','2026-11-17'),{from:'2026-05-18',to:'2026-11-17'}));
+test('月末と閏日の境界を扱う',()=>{assert.equal(stats.range('half','2026-08-31').from,'2026-03-01');assert.equal(stats.range('year','2024-02-29').from,'2023-03-01');assert.equal(stats.range('year','2025-02-28').from,'2024-02-29');});
+test('すべては最初の記録を含み、空の場合も成立する',()=>{assert.equal(stats.range('all','2026-11-17',[row('2024-01-01',30)]).from,'2024-01-01');assert.deepEqual(stats.range('all','2026-11-17'),{from:'2026-11-17',to:'2026-11-17'});});
+test('同日の複数件は1日、時間未入力も日数と件数に含む',()=>{const s=stats.summarize([row('2026-11-16',20),row('2026-11-16',null),row('2026-11-17',undefined)],'2026-11-16','2026-11-17');assert.equal(s.days,2);assert.equal(s.count,3);assert.equal(s.minutes,20);assert.equal(s.unknown,2);assert.equal(s.timed,1);});
+test('0分と未入力を区別する',()=>{assert.equal(stats.summarize([row('2026-11-17',0)]).timed,1);assert.equal(stats.summarize([row('2026-11-17',null)]).timed,0);});
+test('期間とアプリでまとめと内訳をそろえる',()=>{const s=stats.summarize([row('2026-11-01',50),row('2026-11-17',20),row('2026-11-17',15,'reading')],'2026-11-16','2026-11-17','words');assert.equal(s.count,1);assert.equal(s.minutes,20);assert.equal(s.apps.length,1);assert.equal(s.apps[0].id,'words');});
+test('日別で記録なし・未入力・0分を分けて保持する',()=>{const b=stats.buckets([row('2026-11-16',null),row('2026-11-17',0)],'2026-11-15','2026-11-17','week');assert.equal(b.unit,'日別');assert.equal(b.items[0].count,0);assert.equal(b.items[1].unknown,1);assert.equal(b.items[2].timed,1);});
+test('月別集計で抜けた月も表示し、範囲外は加算しない',()=>{const b=stats.buckets([row('2026-05-01',100),row('2026-05-20',15),row('2026-07-01',20)],'2026-05-18','2026-11-17','half');assert.equal(b.unit,'月別');assert.equal(b.items[0].minutes,15);assert.equal(b.items[1].count,0);assert.equal(b.items.reduce((n,x)=>n+x.minutes,0),35);});
+test('長期のすべては年別へ切り替える',()=>assert.equal(stats.buckets([],'2020-01-01','2026-11-17','all').unit,'年別'));
+test('集計は一覧の20件制限に影響されない',()=>assert.equal(stats.summarize(Array.from({length:25},()=>row('2026-11-17',2))).minutes,50));
+test('開始日が終了日より後でも暴走しない',()=>assert.equal(stats.buckets([],'2026-12-01','2026-11-17','custom').items.length,0));
+test('日曜始まりの月も月〜日で配置する',()=>{const c=stats.calendarMonth([],'2026-11');assert.equal(c.cells.length,42);assert.equal(c.cells.slice(0,6).every(d=>d===null),true);assert.equal(c.cells[6].date,'2026-11-01');});
+test('28日で月曜始まりの月は4週間で表示する',()=>{const c=stats.calendarMonth([],'2021-02');assert.equal(c.cells.length,28);assert.equal(c.cells[0].date,'2021-02-01');});
+test('うるう年の2月29日を表示する',()=>assert.equal(stats.calendarMonth([],'2024-02').cells.filter(Boolean).length,29));
+test('同日の時間を合計し、未入力も記録件数に含む',()=>{const c=stats.calendarMonth([row('2026-11-17',25),row('2026-11-17',null,'reading')],'2026-11');const d=c.cells.find(d=>d&&d.date==='2026-11-17');assert.equal(d.count,2);assert.equal(d.minutes,25);assert.equal(d.unknown,1);assert.equal(c.summary.days,1);});
+test('カレンダーでも0分・未入力・記録なしを区別する',()=>{const c=stats.calendarMonth([row('2026-11-01',0),row('2026-11-02',null)],'2026-11');assert.equal(c.cells.find(d=>d&&d.date==='2026-11-01').timed,1);assert.equal(c.cells.find(d=>d&&d.date==='2026-11-02').unknown,1);assert.equal(c.cells.find(d=>d&&d.date==='2026-11-03').count,0);});
+test('表示月の外の記録を含めない',()=>{const c=stats.calendarMonth([row('2026-10-31',60),row('2026-11-01',20),row('2026-12-01',30)],'2026-11');assert.equal(c.summary.minutes,20);assert.equal(c.summary.count,1);});
+test('前月・次月で年をまたげる',()=>{assert.equal(stats.shiftMonth('2026-01',-1),'2025-12');assert.equal(stats.shiftMonth('2026-12',1),'2027-01');});
+test('不正な月指定を拒否する',()=>{for(const m of ['2026-13','2026-00','bad','0000-01'])assert.throws(()=>stats.calendarMonth([],m));});
+console.log(count+' statistics checks passed');

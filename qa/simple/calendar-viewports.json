@@ -1,0 +1,50 @@
+[
+  {
+    "headers": [
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土",
+      "日"
+    ],
+    "height": 1024,
+    "scrollWidth": 768,
+    "stampDays": 5,
+    "unknown": true,
+    "width": 768
+  },
+  {
+    "headers": [
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土",
+      "日"
+    ],
+    "height": 844,
+    "scrollWidth": 390,
+    "stampDays": 5,
+    "unknown": true,
+    "width": 390
+  },
+  {
+    "headers": [
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土",
+      "日"
+    ],
+    "height": 568,
+    "scrollWidth": 320,
+    "stampDays": 5,
+    "unknown": true,
+    "width": 320
+  }
+]

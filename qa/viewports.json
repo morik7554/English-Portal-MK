@@ -1,0 +1,44 @@
+[
+  {
+    "buttonBottom": 473.09375,
+    "clipped": [],
+    "height": 900,
+    "scrollWidth": 1440,
+    "width": 1440
+  },
+  {
+    "buttonBottom": 473.09375,
+    "clipped": [],
+    "height": 768,
+    "scrollWidth": 1366,
+    "width": 1366
+  },
+  {
+    "buttonBottom": 445.53125,
+    "clipped": [],
+    "height": 600,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "buttonBottom": 435.09375,
+    "clipped": [],
+    "height": 1024,
+    "scrollWidth": 768,
+    "width": 768
+  },
+  {
+    "buttonBottom": 439.546875,
+    "clipped": [],
+    "height": 844,
+    "scrollWidth": 390,
+    "width": 390
+  },
+  {
+    "buttonBottom": 484.546875,
+    "clipped": [],
+    "height": 568,
+    "scrollWidth": 320,
+    "width": 320
+  }
+]

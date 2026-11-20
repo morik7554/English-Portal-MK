@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>振り返りログ｜英語の学習ひろば</title>
+<meta name="description" content="このブラウザーに残した学習の記録を確認・修正・削除できます。">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://english-portal-mk.vercel.app/logs.html">
+<meta property="og:site_name" content="英語の学習ひろば">
+<meta property="og:title" content="振り返りログ｜英語の学習ひろば">
+<meta property="og:description" content="このブラウザーに残した学習の記録を確認・修正・削除できます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://english-portal-mk.vercel.app/logs.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://english-portal-mk.vercel.app/assets/hero-learning-world.jpg">
+<meta property="og:image:width" content="900">
+<meta property="og:image:height" content="507">
+<meta property="og:image:alt" content="英語の学習ひろば：ノートと英語学習のイラスト">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://english-portal-mk.vercel.app/"},{"@type":"ListItem","position":2,"name":"振り返りログ","item":"https://english-portal-mk.vercel.app/logs.html"}]}</script>
+</head>
+<body data-page="logs">
+<a class="skip-link" href="#main">本文へすすむ</a>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">E<span>↗</span></span><span>英語の学習ひろば<small>ENGLISH LEARNING PORTAL</small></span></a>
+<nav aria-label="共通メニュー"><a href="index.html">ホーム</a><a href="guide.html">使い方</a></nav></header>
+<main id="main" tabindex="-1" class="page-main">
+<nav class="breadcrumb" aria-label="現在の位置"><a href="index.html">ホーム</a><span aria-hidden="true">/</span><span aria-current="page">振り返りログ</span></nav><div class="page-heading heading-row"><div><p class="eyebrow">YOUR LEARNING JOURNAL</p><h1>振り返りログ</h1><p>これまでの取り組みを、まとめて見てみよう。</p></div><div class="form-actions heading-actions"><a class="button secondary" id="calendarLink" href="calendar.html">カレンダーで見る</a><a class="button secondary" href="record.html">＋ 記録する</a></div></div><noscript><p class="notice">ログを見るにはJavaScriptが必要です。教材はホームから使えます。</p></noscript>
+<div id="journalUI" hidden>
+<section class="journal-overview" aria-labelledby="overviewTitle">
+<h2 id="overviewTitle" class="sr-only">期間ごとの取り組み</h2>
+<div id="periodButtons" class="period-buttons" role="group" aria-label="振り返る期間"></div>
+<p id="periodRange" class="period-range" aria-live="polite"></p>
+<div id="statsSummary" class="stats-summary"></div>
+<section class="panel time-chart"><div class="chart-heading"><h2 id="chartTitle">勉強時間</h2><span id="chartUnit" class="help"></span></div><div id="timeChart"></div><p class="help">時間未入力の記録は日数・件数に含め、勉強時間には加算しません。記録のない日は、学習していないという意味ではありません。</p></section>
+<details class="panel app-breakdown"><summary>アプリ別の取り組みを見る</summary><div id="appBreakdown"></div></details>
+</section>
+<details class="extra-filters"><summary>アプリや日付でさらに絞り込む</summary><form id="filterForm" class="panel filter-panel"><div><label for="filterFrom">いつから</label><input type="date" id="filterFrom" name="from"></div><div><label for="filterTo">いつまで</label><input type="date" id="filterTo" name="to"></div><div><label for="filterApp">アプリ</label><select id="filterApp" name="app"><option value="">すべて</option></select></div><button class="text-button" type="reset">絞り込みを解除</button><p id="filterError" class="error" role="alert"></p></form></details>
+<div class="log-toolbar"><p id="logCount" role="status" aria-live="polite"></p><p id="saveMode" class="help"></p></div><div id="logList" class="log-list"></div><button class="button secondary load-more" id="loadMore" type="button" hidden>もっと見る</button><section id="legacySection" class="panel legacy-section" hidden><h2>以前の記録</h2><p class="help">以前の形式で残した内容です。1〜5の評価には換算していません。上の期間集計・グラフ・日付やアプリの絞り込みには含まれません。</p><div id="legacyList"></div></section></div><p id="pageStatus" class="error" role="status" aria-live="polite"></p>
+<dialog id="deleteDialog" aria-labelledby="deleteTitle"><h2 id="deleteTitle">この記録を削除しますか？</h2><p id="deleteTarget"></p><p class="help">この操作は取り消せません。他の記録や外部教材の記録は消えません。</p><div class="form-actions"><button id="cancelDelete" class="button secondary" type="button">もどる</button><button id="confirmDelete" class="button danger" type="button">削除する</button></div></dialog>
+</main>
+<footer class="site-footer"><span>自分のペースで、一つずつ。</span><a href="settings.html">記録の設定</a><small>English Learning Portal</small></footer>
+<script src="assets/categories.js"></script>
+<script src="assets/learning-store.js"></script>
+<script src="assets/journal-stats.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

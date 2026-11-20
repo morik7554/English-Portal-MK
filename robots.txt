@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://english-portal-mk.vercel.app/sitemap.xml
